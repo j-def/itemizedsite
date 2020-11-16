@@ -1,0 +1,138 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+    body{
+        text-align:center;
+    }
+        h1{
+            text-align: center;
+        }
+        #productList{
+            width: 50%;
+            margin-top: 5%;
+            margin-right: auto;
+            margin-left: auto;
+        }
+        #sortBox{
+            margin-left: 2.5%;
+            width: 12.5%;
+            float: right;
+        }
+        #sortBy{
+            width: 100%;
+        }
+        #sortLabel{
+            text-align: center;
+        }
+        #inventoryTable{
+            width: 85%;
+            border: 2px dark grey;
+            border-collapse: collapse;
+           table-layout: fixed;
+        }
+        img{
+            width: 100%;
+        }
+        td{
+            text-align: center;
+        }
+        .edit{
+            text-align:center;
+        }
+    </style>
+
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    var sortBy = document.getElementById("sortBy").value;
+    $.ajax({url: "/table", data: {'sortBy': sortBy},success: function(result){
+      document.getElementById("inventoryTable").innerHTML = result;
+        $(".mercarilist").click(function(){
+           var id = $(this).attr("id");
+
+           $("#"+id+".mercarilist").attr("value", "Uploading");
+           $("#"+id+".mercarilist").attr("disabled", "true");
+
+
+           var datajson = {
+                    'command': 'list',
+                    'site': 'mercari',
+                    'item': id
+                }
+        $.ajax({url: 'http://127.0.0.1:8354/api/queue/add/',
+                type: 'POST',
+                data: JSON.stringify(datajson),
+                contentType: "application/json",
+                dataType: 'json',
+                success: function(result){
+                    if (result["status"] == "success"){
+
+                    }
+                }});
+
+    });
+    }});
+
+});
+</script>
+<script>
+$(document).ready(function(){
+  $("select").change(function(){
+    var sortBy = document.getElementById("sortBy").value;
+    $.ajax({url: "/table", data: {'sortBy': sortBy},success: function(result){
+      document.getElementById("inventoryTable").innerHTML = result;
+           $(".mercarilist").click(function(){
+    });
+    }});
+  });
+});
+</script>
+<script>
+function edit(id){
+     window.location.href = "/edit/?id=" + id;
+}
+</script>
+
+</head>
+<body>
+
+<h1>Inventory Table</h1>
+
+<div id="productList">
+    <div id="sortBox">
+    <h2 id="sortLabel">Sort by:</h2>
+<select id="sortBy">
+    <option value="ageDescending">Age Descending</option>
+    <option value="ageAscending">Age Ascending</option>
+    <option value="priceDescending">Price Descending</option>
+    <option value="priceAscending">Price Ascending</option>
+    <option value="nameDescending">Name Descending</option>
+    <option value="nameAscending">Name Ascending</option>
+</select>
+</div>
+    <div id="inventoryTableDiv">
+<table id="inventoryTable" border="1">
+<tr>
+<td>Name</td>
+<td>Price</td>
+<td>Image</td>
+<td>Link</td>
+<td>Mercari</td>
+<td>Letgo</td>
+<td>Facebook Marketplace</td>
+<td>Edit</td>
+</tr>
+
+</table>
+</div>
+    </div>
+<br>
+
+<a href="/additem/">Add an Item</a>
+
+</body>
+</html>

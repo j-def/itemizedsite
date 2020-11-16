@@ -1,0 +1,602 @@
+<html>
+<head>
+    <script>
+        $(document).ready(function () {
+            {% load static %}
+
+            $("#navbar-power-icon").click(function () {
+                var mainbox = document.createElement("div");
+                mainbox.setAttribute("class", "logout-popup");
+
+                var imgbox = document.createElement("div");
+                imgbox.setAttribute("class", "popup-wrapper");
+
+                var img = document.createElement("img");
+                img.setAttribute("class", "logout-popup-img");
+                img.setAttribute("src", '{% static "logout-2.png" %}');
+
+                imgbox.appendChild(img);
+                mainbox.appendChild(imgbox);
+
+                var textbox = document.createElement("div");
+                textbox.setAttribute("class", "popup-wrapper-2");
+
+                var text1 = document.createElement("p");
+                text1.setAttribute("id", "popup-title")
+                text1.innerHTML = "Sign Out?"
+
+                var text2 = document.createElement("p");
+                text2.setAttribute("id", "popup-text");
+                text2.innerHTML = "Are you sure? You must remember your credentials to sign back in.";
+
+                textbox.appendChild(text1);
+                textbox.appendChild(text2);
+                mainbox.appendChild(textbox);
+
+                var buttonbox = document.createElement("div");
+                buttonbox.setAttribute("class", "popup-logout-button");
+
+                var img = document.createElement("img");
+                img.setAttribute("id", "popup-logout-img");
+                img.setAttribute("src", "{% static "arrow-left.png" %}");
+
+                var buttontext = document.createElement("p");
+                buttontext.setAttribute("id", "popup-logout-text");
+                buttontext.innerHTML = "Sign Out";
+
+                buttonbox.appendChild(img);
+                buttonbox.appendChild(buttontext);
+                mainbox.appendChild(buttonbox);
+
+                var box = document.getElementById("popup-box-div");
+
+                var wrapjob = document.createElement("div");
+                wrapjob.setAttribute("class", "background-popup-wrapper");
+                box.append(wrapjob);
+                box.appendChild(mainbox);
+
+                $(".popup-logout-button").click(function () {
+                    window.location = "/logout/";
+                })
+
+                $('.background-popup-wrapper').click(function () {
+                    document.getElementById("popup-box-div").innerHTML = "";
+                })
+            })
+
+        })
+    </script>
+</head>
+<body>
+
+    <div id="popup-box-div">
+
+    </div>
+    <script>
+        $(document).ready(function () {
+
+            $("#navbar-notif-icon").click(function () {
+                var mainbox = document.createElement("div");
+                mainbox.setAttribute("class", "notification-popup");
+
+                var notificationtitle = document.createElement("p");
+                notificationtitle.setAttribute("id", "notification-title");
+                notificationtitle.innerHTML = "Notifications";
+
+                mainbox.appendChild(notificationtitle);
+
+                x = 1
+                for (var i = 0; i < x; i++) {
+                    var row = document.createElement("div");
+                    row.setAttribute("id", "notification-row");
+
+                    var rowtitle = document.createElement("div");
+                    rowtitle.setAttribute("id", "notification-row-title")
+
+                    var bluedot = document.createElement("div");
+                    bluedot.setAttribute("class", "blue-dot");
+
+                    rowtitle.appendChild(bluedot);
+
+                    var titletext = document.createElement("p");
+                    titletext.setAttribute("id", "notification-row-title-text");
+                    titletext.innerHTML = "New Items Imported";
+
+                    rowtitle.appendChild(titletext);
+                    rowtitle.setAttribute("id", "notification-row-title");
+
+                    row.appendChild(rowtitle);
+
+                    var rowtext = document.createElement("div");
+                    rowtext.setAttribute("id", "notification-row-text");
+
+                    var rowtexttext = document.createElement("p");
+                    rowtexttext.setAttribute("id", "notification-row-text-text");
+
+                    rowtexttext.innerHTML = "107 new items imported from eBay at 3:17 PM.";
+                    rowtext.appendChild(rowtexttext);
+
+                    row.appendChild(rowtext);
+
+                    mainbox.appendChild(row);
+
+                }
+
+                var addto = document.getElementById("popup-box-div");
+                addto.appendChild(mainbox);
+
+                var wrapjob = document.createElement("div");
+                wrapjob.setAttribute("class", "background-popup-wrapper");
+                addto.append(wrapjob);
+
+                $('.background-popup-wrapper').click(function () {
+                    document.getElementById("popup-box-div").innerHTML = "";
+                })
+            })
+
+        })
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300&display=swap');
+
+        body {
+            margin: 0;
+        }
+
+        .navbar-top {
+            width: 100vw;
+            height: 100px;
+            top: 0;
+        }
+
+        .navbar-home {
+            display: inline-block;
+            margin-left: 5%;
+            width: fit-content;
+        }
+
+        #navbar-logo {
+            margin-left: 10%;
+            margin-top: 25px;
+        }
+
+        #navbar-home-icon {
+            padding-bottom: 10px;
+        }
+
+        #navbar-home-text {
+            font-family: 'Kumbh Sans', sans-serif;
+            margin-top: 7.5px;
+            float: right;
+            margin-left: 1vw;
+            font-weight: bold;
+        }
+
+        .navbar-inventory {
+            display: inline-block;
+            margin-left: 2.5%;
+            width: fit-content;
+        }
+
+        #navbar-inventory-icon {
+            padding-bottom: 10px;
+        }
+
+        .navbar-sales {
+            display: inline-block;
+            margin-left: 2.5%;
+            width: fit-content;
+        }
+
+        #navbar-sales-icon {
+            padding-bottom: 10px;
+        }
+
+        .navbar-settings {
+            display: inline-block;
+            margin-left: 2.5%;
+            width: fit-content;
+        }
+
+        #navbar-settings-icon {
+            padding-bottom: 10px;
+        }
+
+        #navbar-user-icon {
+            height: 75px;
+            width: 75px;
+            background-color: blue;
+            float: right;
+            margin-right: 10%;
+            margin-top: 12.5px;
+            border-radius: 5px;
+        }
+
+        .navbar-notif {
+            float: right;
+            margin-right: 2.5%;
+        }
+
+        #navbar-notif-icon {
+            margin-top: 35px;
+        }
+
+        .navbar-power {
+            float: right;
+            margin-right: 2.5%;
+        }
+
+        #navbar-power-icon {
+            margin-top: 35px;
+        }
+
+
+        .welcome-message {
+            font-family: 'Kumbh Sans', sans-serif;
+            margin-top: 1%;
+            margin-left: 10%;
+            width: fit-content;
+        }
+
+        h1 {
+            width: fit-content;
+            font-size: 24px;
+        }
+
+        h2 {
+            width: fit-content;
+            opacity: 50%;
+            font-size: 18px;
+        }
+
+        #func-wrapper {
+            margin-top: -100px;
+            display: block;
+            height: 100px;
+            width: fit-content;
+            float: right;
+            margin-right: 10%;
+        }
+
+        #add-item-button {
+            height: 100%;
+            width: fit-content;
+            float: right;
+        }
+
+        #add-item-logo {
+            padding-top: 30px;
+            float: left;
+            padding-right: 10px;
+        }
+
+        #add-item-text {
+            color: #1625C7;
+            font-family: 'Kumbh Sans', sans-serif;
+            float: right;
+            margin: 0;
+            padding-top: calc(50% - 17px);
+        }
+
+        .inventory-search {
+            height: 100%;
+            width: fit-content;
+            margin-right: 5%;
+            float: left;
+        }
+
+        .inv-search {
+            font-family: 'Kumbh Sans', sans-serif;
+
+        {
+            % load static %
+        }
+
+        border: 0;
+        background-image: url({% static "search.png" %
+        }
+        );
+        background-repeat: no-repeat;
+        background-position: 5% 50%;
+        background-size: 40px;
+        padding-left: 10%;
+        margin-top: -75px;
+        width: 100%;
+        height: 50px;
+        border-radius: 10px;
+        padding-left: 65px;
+        text-align: left;
+        margin-right: 50px;
+        outline: none;
+        }
+
+        #inventory-table {
+            border: solid 2px #D2D2D2;
+            border-radius: 10px;
+            font-family: 'Kumbh Sans', sans-serif;
+            width: 65%;
+            float: right;
+            margin-right: 10%;
+            padding-top: 20px;
+            padding-left: 40px;
+            padding-bottom: 20px;
+        }
+
+        tr {
+            text-align: left;
+        }
+
+        thead th {
+            opacity: 50%;
+            padding-bottom: 15px;
+        }
+
+        .sold {
+            color: #1625C7;
+        }
+
+        .filter-row {
+            border-radius: 10px;
+            border: solid 2px #D2D2D2;
+            margin-left: 10%;
+            width: 12.5%;
+            float: left;
+        }
+
+        h3 {
+            font-family: 'Kumbh Sans', sans-serif;
+            padding-left: 20%;
+        }
+
+        h4 {
+            font-family: 'Kumbh Sans', sans-serif;
+            padding-left: 20%;
+        }
+
+        .active-button {
+            color: black;
+        }
+
+        .inactive-button {
+            color: #A7A7A7;
+        }
+
+        .filter-sort {
+            font-family: 'Kumbh Sans', sans-serif;
+            background-color: white;
+            outline: none;
+            border: 0;
+            padding-bottom: 10px;
+            width: 100%;
+            text-align: left;
+            padding-left: 20%;
+        }
+
+        .filter-type {
+            font-family: 'Kumbh Sans', sans-serif;
+            background-color: white;
+            outline: none;
+            border: 0;
+            padding-bottom: 10px;
+            width: 100%;
+            text-align: left;
+            padding-left: 20%;
+        }
+
+        .filter-fees {
+            font-family: 'Kumbh Sans', sans-serif;
+            background-color: white;
+            outline: none;
+            border: 0;
+            padding-bottom: 10px;
+            width: 100%;
+            text-align: left;
+            padding-left: 20%;
+        }
+
+        .not-shipped {
+            color: #FF2424;
+        }
+
+        .in-transit {
+            color: #E58654;
+        }
+
+        .completed {
+            color: #E58654;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $(".filter-sort").click(function () {
+
+                $("#sortdate").attr("class", "filter-sort inactive-button")
+                $("#sortalpha").attr("class", "filter-sort inactive-button")
+                $("#sortlow").attr("class", "filter-sort inactive-button")
+                $("#sorthigh").attr("class", "filter-sort inactive-button")
+                $.ajax({
+                    url: "/sales/table/",
+                    data: {
+                        "sort": $(this).attr('id'),
+                        "type": $(".filter-type").attr('id'),
+                        "fees": $(".filter-fees").attr('id')
+                    },
+                    success: function (result) {
+                        $("#tablebox").html(result)
+
+                    }
+                })
+                $(this).attr("class", "filter-sort active-button")
+            })
+            $(".filter-type").click(function () {
+
+                $("#typeall").attr("class", "filter-type inactive-button")
+                $("#typeclothing").attr("class", "filter-type inactive-button")
+                $("#typesneakers").attr("class", "filter-type inactive-button")
+                $("#typeother").attr("class", "filter-type inactive-button")
+                $.ajax({
+                    url: "/sales/table/",
+                    data: {
+                        "sort": $(".filter-sort").attr('id'),
+                        "type": $(this).attr('id'),
+                        "fees": $(".filter-fees").attr('id')
+                    },
+                    success: function (result) {
+                        $("#tablebox").html(result)
+
+                    }
+                })
+                $(this).attr("class", "filter-type active-button")
+            })
+            $(".filter-fees").click(function () {
+
+                $("#feesinclude").attr("class", "filter-fees inactive-button")
+                $("#feesexclude").attr("class", "filter-fees inactive-button")
+                $.ajax({
+                    url: "/sales/table/",
+                    data: {
+                        "sort": $(".filter-sort").attr('id'),
+                        "type": $(".filter-type").attr('id'),
+                        "fees": $(this).attr('id')
+                    },
+                    success: function (result) {
+                        $("#tablebox").html(result)
+
+                    }
+                })
+                $(this).attr("class", "filter-fees active-button")
+            })
+
+        })
+    </script>
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: "/sales/table/",
+                data: {
+                    "sort": $(".filter-sort").attr('id'),
+                    "type": $(".filter-type").attr('id'),
+                    "fees": $(".filter-fees").attr('id')
+                },
+                success: function (result) {
+                    $("#tablebox").html(result)
+
+                }
+            })
+
+        })
+    </script>
+    </head>
+    <body>
+        <div id="popup-box-div">
+
+        </div>
+        <div class="navbar-top">
+            {% load static %}
+            <img id="navbar-logo" src="{% static "itemizedblack.png" %}" alt="Itemized Logo" height="50px">
+
+            <a href="/" class="navbar-home">
+                {% load static %}
+                <img id="navbar-home-icon" src="{% static "home-3.png" %}" height="30px" />
+
+            </a>
+
+            <a href="/inventory/" class="navbar-inventory">
+                {% load static %}
+                <img id="navbar-inventory-icon" src="{% static "package-close.png" %}" height="30px" />
+
+            </a>
+
+            <a href="/sales/" class="navbar-sales">
+                {% load static %}
+                <img id="navbar-sales-icon" src="{% static "receipt-blue.png" %}" height="30px" />
+                <p id="navbar-home-text">Sales</p>
+
+            </a>
+
+            <a href="/settings/" class="navbar-settings">
+                {% load static %}
+                <img id="navbar-settings-icon" src="{% static "settings.png" %}" height="30px" />
+            </a>
+
+            <div id="navbar-user-icon"></div>
+
+            <div class="navbar-notif">
+                <img id="navbar-notif-icon" src="{% static "square-chat.png" %}" height="30px" />
+            </div>
+
+            <a href="/logout/" class="navbar-power">
+                <img id="navbar-power-icon" src="{% static "power-button.png" %}" height="30px" />
+            </a>
+        </div>
+
+        <div class="welcome-message">
+            <h1>
+                Welcome to your sales, {{name}}
+            </h1>
+            <h2>
+                You've had {{recentsales}} new sales in the past 24 hours.
+            </h2>
+
+        </div>
+
+        <div id="func-wrapper">
+            <div id="add-item-button">
+                <img id="add-item-logo" src="{% static "file-add.png" %}" width="40" />
+                <p id="add-item-text">Add Item</p>
+            </div>
+            <div class="inventory-search">
+                <input type="text" class="inv-search" id="username" name="name" placeholder="Search your sales...">
+            </div>
+        </div>
+
+        <div id="tablebox">
+            <table id="inventory-table">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Retail Price</th>
+                        <th>Resale Price</th>
+                        <th>Link</th>
+                        <th>Date Sold</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>adidas Yeezy 700 V3 Arzareth (US 9.5)</th>
+                        <th>$200</th>
+                        <th>$370</th>
+                        <th><a href="https://stockx.com/adidas-yeezy-700-v3-arzareth">stockx.com</a></th>
+                        <th>09.03.20</th>
+                        <th class="not-shipped">Not Shipped</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="filter-row">
+            <h3>Filter</h3>
+
+            <h4>Sort</h4>
+            <button id="sortdate" class="filter-sort active-button">Date Sold</button>
+            <button id="sortalpha" class="filter-sort inactive-button">Alphabetically</button>
+            <button id="sortlow" class="filter-sort inactive-button">Price Low to High</button>
+            <button id="sorthigh" class="filter-sort inactive-button">Price High to Low</button>
+
+            <h4>Type</h4>
+            <button id="typeall" class="filter-type active-button">All</button>
+            <button id="typeclothing" class="filter-type inactive-button">Clothing</button>
+            <button id="typesneakers" class="filter-type inactive-button">Sneakers</button>
+            <button id="typeother" class="filter-type inactive-button">Other</button>
+
+            <h4>Fees</h4>
+            <button id="feesinclude" class="filter-fees active-button">Included</button>
+            <button id="feesexclude" class="filter-fees inactive-button">Excluded</button>
+
+        </div>
+
+    </body>
+</html>

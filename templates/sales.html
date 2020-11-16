@@ -1,0 +1,94 @@
+<html>
+<head>
+    <style>
+        .title {
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        body{
+        text-align:center;
+    }
+        h1{
+            text-align: center;
+        }
+
+        #inventoryTable{
+            width: 100%;
+            border: 2px dark grey;
+            border-collapse: collapse;
+           table-layout: fixed;
+        }
+        img{
+            width: 100%;
+        }
+
+        td{
+            border: solid 1px black;
+            text-align: center;
+        }
+        #images{
+            width: 100px;
+        }
+        #tableDiv{
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                type: "GET",
+                url: "table/",
+                success: function (result) {
+                    document.getElementById("tableDiv").innerHTML = result;
+                }
+                
+            });
+        });
+    </script>
+    <script>
+        function remove(id){
+            $.ajax({
+            type: "POST",
+            url: "remove/",
+            data: {
+                "item": id
+            },
+            success: function(result){
+                alert(result);
+            }
+            });
+        }
+    </script>
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                type: "GET",
+                url: "profit/",
+                success: function (result) {
+                    document.getElementById("profitVis").innerHTML = result;
+                }
+
+            });
+        });
+    </script>
+</head>
+<body>
+
+    <div class="title">
+        <h1>
+            Sales
+        </h1>
+    </div>
+
+    <div id="tableDiv">
+
+    </div>
+   <div id="profitVis">
+
+   </div>
+</body>
+</html>

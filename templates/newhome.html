@@ -1,0 +1,996 @@
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $(".invcount").click(function () {
+
+                $("#newinvall").attr("class", "invcount inactive-button")
+                $("#newinvtype1").attr("class", "invcount inactive-button")
+                $("#newinvtype2").attr("class", "invcount inactive-button")
+                $("#newinvtype3").attr("class", "invcount inactive-button")
+
+                $(this).attr("class", "invcount active-button")
+            })
+            $(".profit").click(function () {
+
+                $("#profitall").attr("class", "invcount inactive-button")
+                $("#profittype1").attr("class", "invcount inactive-button")
+                $("#profittype2").attr("class", "invcount inactive-button")
+                $("#profittype3").attr("class", "invcount inactive-button")
+
+                $(this).attr("class", "invcount active-button")
+            })
+            $(".timescale").click(function () {
+
+                $("#day").attr("class", "timescale inactive-button")
+                $("#week").attr("class", "timescale inactive-button")
+                $("#month").attr("class", "timescale inactive-button")
+                $("#year").attr("class", "timescale inactive-button")
+
+                $(this).attr("class", "timescale active-button")
+            })
+            $(".add-inv-b").click(function () {
+
+                $("#addall").attr("class", "add-inv-b inactive-button")
+                $("#addsold").attr("class", "add-inv-b inactive-button")
+                $("#addunsold").attr("class", "add-inv-b inactive-button")
+
+                $(this).attr("class", "add-inv-b active-button")
+            })
+
+        })
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300&display=swap');
+
+        body {
+            margin: 0;
+        }
+
+        .navbar-top {
+            width: 100vw;
+            height: 100px;
+            top: 0;
+        }
+
+        .navbar-home {
+            display: inline-block;
+            margin-left: 5%;
+            width: fit-content;
+        }
+
+        #navbar-logo {
+            margin-left: 10%;
+            margin-top: 25px;
+        }
+
+        #navbar-home-icon {
+            padding-bottom: 10px;
+        }
+
+        #navbar-home-text {
+            font-family: 'Kumbh Sans', sans-serif;
+            margin-top: 7.5px;
+            float: right;
+            margin-left: 1vw;
+        }
+
+        .navbar-inventory {
+            display: inline-block;
+            margin-left: 2.5%;
+            width: fit-content;
+        }
+
+        #navbar-inventory-icon {
+            padding-bottom: 10px;
+        }
+
+        .navbar-sales {
+            display: inline-block;
+            margin-left: 2.5%;
+            width: fit-content;
+        }
+
+        #navbar-sales-icon {
+            padding-bottom: 10px;
+        }
+
+        .navbar-settings {
+            display: inline-block;
+            margin-left: 2.5%;
+            width: fit-content;
+        }
+
+        #navbar-settings-icon {
+            padding-bottom: 10px;
+        }
+
+        #navbar-user-icon {
+            height: 75px;
+            width: 75px;
+            background-color: blue;
+            float: right;
+            margin-right: 10%;
+            margin-top: 12.5px;
+            border-radius: 5px;
+        }
+
+        .navbar-notif {
+            float: right;
+            margin-right: 2.5%;
+        }
+
+        #navbar-notif-icon {
+            margin-top: 35px;
+        }
+
+        .navbar-power {
+            float: right;
+            margin-right: 2.5%;
+        }
+
+        #navbar-power-icon {
+            margin-top: 35px;
+        }
+
+
+        .welcome-message {
+            font-family: 'Kumbh Sans', sans-serif;
+            margin-top: 1%;
+            margin-left: 10%;
+        }
+
+        h1 {
+            font-size: 24px;
+        }
+
+        h2 {
+            opacity: 50%;
+            font-size: 18px;
+        }
+
+
+
+        .sales-summary {
+            width: 80vw;
+            margin-top: 2.5%;
+            margin-left: 10%;
+        }
+
+        .sale-chart {
+            width: 25%;
+            height: 22.5%;
+            border: solid 2px #D2D2D2;
+            border-radius: 10px;
+            position: relative;
+            float: left;
+        }
+
+        .recent-additions {
+            width: 72.5%;
+            height: 33%;
+            border: solid 2px #D2D2D2;
+            border-radius: 10px;
+            position: relative;
+            float: right;
+        }
+
+        .new-inventory {
+            margin-top: 2.5%;
+            float: left;
+            width: 25%;
+            height: fit-content;
+            border: solid 2px #D2D2D2;
+            border-radius: 10px;
+        }
+
+        .recent-profit {
+            margin-top: 2.5%;
+            float: left;
+            width: 25%;
+            height: 15%;
+            border: solid 2px #D2D2D2;
+            border-radius: 10px;
+        }
+
+        .quick-actions {
+            width: 35%;
+            height: 29%;
+            float: right;
+            margin-top: 2.5%;
+            border: solid 2px #D2D2D2;
+            border-radius: 10px;
+        }
+
+        .listing-statistics {
+            width: 35%;
+            height: 29%;
+            float: right;
+            margin-top: 2.5%;
+            margin-right: 2.5%;
+            border: solid 2px #D2D2D2;
+            border-radius: 10px;
+        }
+
+        #sales-summary-title {
+            height: fit-content;
+            width: fit-content;
+            margin-top: 25px;
+            margin-left: 25px;
+        }
+
+        h3 {
+            font-size: medium;
+            font-family: 'Kumbh Sans', sans-serif;
+            margin: 0;
+        }
+
+        #new-inventory-icon {
+            margin-top: 5%;
+            margin-left: 25px;
+            height: 30%;
+        }
+
+        .new-inventory-count {
+            margin-top: 5%;
+            margin-left: 2%;
+            float: right;
+            width: 65%;
+        }
+
+        p {
+            padding-left: 10px;
+            font-family: 'Kumbh Sans', sans-serif;
+            font-size: large;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .invcount {
+            font-family: 'Kumbh Sans', sans-serif;
+            font-weight: bold;
+            background-color: white;
+            border: 0;
+            margin-top: 10px;
+            float: left;
+            margin-left: 10px;
+            outline: none;
+        }
+
+        .profit {
+            font-family: 'Kumbh Sans', sans-serif;
+            font-weight: bold;
+            background-color: white;
+            border: 0;
+            margin-top: 10px;
+            float: left;
+            margin-left: 10px;
+            outline: none;
+        }
+
+
+        .active-button {
+            color: black;
+        }
+
+        .inactive-button {
+            color: #A7A7A7;
+        }
+
+        .listing-statistics-row {
+            padding-left: 5%;
+            margin-top: 5%;
+            width: 100%;
+            height: 10%;
+        }
+
+        h4 {
+            color: #1625C7;
+            font-family: 'Kumbh Sans', sans-serif;
+            font-size: x-large;
+            float: left;
+            width: fit-content;
+            margin: 0;
+            padding-left: 25px;
+        }
+
+        h5 {
+            font-weight: 500;
+            font-family: 'Kumbh Sans', sans-serif;
+            height: 100%;
+            font-size: large;
+            float: left;
+            width: fit-content;
+            margin: 0;
+            padding-left: 10%;
+        }
+
+        .quick-action-row {
+            padding-left: 5%;
+            margin-top: 5%;
+            width: 100%;
+        }
+
+        #quick-action-icon {
+            float: left;
+            margin-left: 25px;
+        }
+
+        #quick-action-icon1 {
+            margin-top: 1%;
+            float: left;
+            margin-left: 25px;
+        }
+
+        h6 {
+            font-family: 'Kumbh Sans', sans-serif;
+            float: left;
+            width: fit-content;
+            margin: 0;
+            font-size: 18px;
+            padding-top: 16px;
+            padding-bottom: 16px;
+            padding-left: 10%;
+        }
+
+        #quick-action-arrow {
+            margin-left: 5%;
+            margin-top: 15px;
+        }
+
+        #chart {
+            width: 100%;
+            height: 50%;
+        }
+
+        .sales-figures {
+            margin-top: 5%;
+            padding-left: 10%;
+            width: 100%;
+        }
+
+        #sales-figures-top {
+            color: #1625C7;
+        }
+
+        #sales-figures-bottom {
+            margin-top: 2.5%;
+            opacity: 60%;
+        }
+
+        .timescale {
+            margin: 0;
+            font-weight: bold;
+            background-color: white;
+            border: 0;
+            outline: none;
+            font-family: 'Kumbh Sans', sans-serif;
+            float: right;
+        }
+
+        .add-inv-b {
+            margin: 0;
+            font-weight: bold;
+            background-color: white;
+            border: 0;
+            outline: none;
+            font-family: 'Kumbh Sans', sans-serif;
+            float: right;
+        }
+
+        .button-wrapper {
+            margin-top: -25px;
+            float: right;
+            width: fit-content;
+            width: 50%;
+            height: 25px;
+        }
+
+
+        #recent-additions-table {
+            font-family: 'Kumbh Sans', sans-serif;
+            width: 100%;
+            padding-left: 5%;
+            padding-right: 5%;
+        }
+
+        thead {
+            opacity: 60%;
+        }
+
+        th {
+            padding-top: 10px;
+            text-align: left;
+        }
+
+        .profit-text {
+            color: #1625C7;
+        }
+
+
+        .logout-popup {
+            animation-name: intoFrame;
+            animation-duration: 2s;
+            width: 200px;
+            height: 200px;
+            border: solid 2px #D2D2D2;
+            border-radius: 10px;
+            position: fixed;
+            right: 20%;
+            top: 125px;
+            background-color: white;
+            z-index: 999;
+        }
+
+        .popup-wrapper {
+            width: 100%;
+            height: 75px;
+        }
+
+        .logout-popup-img {
+            float: right;
+            width: 40px;
+            height: 40px;
+            padding-right: 15px;
+            padding-top: 15px;
+        }
+
+        #popup-title {
+            float: right;
+            padding-right: 15px;
+            font-size: 18px;
+            text-align: right;
+        }
+
+        #popup-text {
+            padding-top: 10px;
+            float: right;
+            padding-right: 15px;
+            font-size: 14px;
+            text-align: right;
+        }
+
+        .popup-wrapper-2 {
+            width: 100%;
+            height: 20%;
+        }
+
+        .popup-logout-button {
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+        }
+
+        #popup-logout-text {
+            margin-top: 10px;
+            color: #1625C7;
+            text-align: right;
+            padding-bottom: 10px;
+            padding-right: 15px;
+            float: right;
+        }
+
+        #popup-logout-img {
+            height: 15px;
+            float: left;
+            padding-top: 10px;
+            padding-left: 70px;
+        }
+
+        @keyframes intoFrame {
+            from {
+                right: -200px;
+            }
+
+            to {
+                right: 20%;
+            }
+        }
+
+        .background-popup-wrapper{
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            border: solid 1px white;
+            z-index: 99;
+
+        }
+
+        @keyframes intoFrame2 {
+            from {
+                right: -200px;
+            }
+
+            to {
+                right: 15%;
+            }
+        }
+        .notification-popup {
+            animation-name: intoFrame2;
+            animation-duration: 2s;
+            border-radius: 10px;
+            background-color: white;
+            z-index: 999;
+            position: fixed;
+            border: solid 2px #D2D2D2;
+            width: 200px;
+            min-height: 200px;
+            max-height: 80%;
+            overflow: auto;
+            height: auto;
+            right: 15%;
+            top: 100px;
+        }
+        #notification-title {
+            font-size: 18px;
+            text-align: left;
+            margin-left: 15px;
+            margin-top: 10px;
+        }
+        #notification-row {
+            padding-top: 10px;
+            width: 100%;
+            height: auto;
+        }
+        #notification-row-title {
+            width: 100%;
+            height: auto;
+            overflow: overlay;
+        }
+        #notification-row-title-text {
+            font-size: 16px;
+            width: fit-content;
+            float: left;
+        }
+        .blue-dot {
+            margin-top: 4px;
+            margin-right: 0px;
+            margin-left: 10px;
+            float: left;
+            width: 10px;
+            height: 10px;
+            background-color: #1625C7;
+            border-radius: 5px;
+        }
+        #notification-row-text {
+            padding-top: 5px;
+            padding-left: 20px;
+            overflow: overlay;
+            width: calc(100% - 20px);
+        }
+        #notification-row-text-text{
+            opacity: 70%;
+            font-size: 13px;
+        }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script>
+        window.onload = function () {
+            var ctx = document.getElementById('chart').getContext('2d');
+            var chart = new Chart(ctx, {
+                // The type of chart we want to create
+                type: 'line',
+
+                // The data for our dataset
+                data: {
+                    backgroundColor: 'rgb(22, 37, 199)',
+                    labels: ['1', '2', '3', '4', '5', '6', '7'],
+                    datasets: [{
+                        fill: false,
+                        pointStyle: 'line',
+                        borderColor: 'rgb(22, 37, 199)',
+                        data: [15, 25, 63, 12, 45, 23, 54]
+                    }]
+                },
+
+                // Configuration options go here
+                options: {
+                    elements: {
+                        point: {
+                            radius: 0
+                        }
+                    },
+                    title: {
+                        display: false,
+                    },
+                    legend: {
+                        display: false
+                    },
+                    scales: {
+                        yAxes: [{
+                            display: false
+                        }],
+                        xAxes: [{
+                            display: false
+                        }]
+                    }
+                }
+            });
+        }
+    </script>
+    {% load static %}
+  
+    <script>
+        $(document).ready(function () {
+            
+            $("#navbar-power-icon").click(function () {
+                var mainbox = document.createElement("div");
+                mainbox.setAttribute("class", "logout-popup");
+
+                var imgbox = document.createElement("div");
+                imgbox.setAttribute("class", "popup-wrapper");
+
+                var img = document.createElement("img");
+                img.setAttribute("class", "logout-popup-img");
+                img.setAttribute("src", '{% static "logout-2.png" %}');
+
+                imgbox.appendChild(img);
+                mainbox.appendChild(imgbox);
+
+                var textbox = document.createElement("div");
+                textbox.setAttribute("class", "popup-wrapper-2");
+
+                var text1 = document.createElement("p");
+                text1.setAttribute("id", "popup-title")
+                text1.innerHTML = "Sign Out?"
+
+                var text2 = document.createElement("p");
+                text2.setAttribute("id", "popup-text");
+                text2.innerHTML = "Are you sure? You must remember your credentials to sign back in.";
+
+                textbox.appendChild(text1);
+                textbox.appendChild(text2);
+                mainbox.appendChild(textbox);
+
+                var buttonbox = document.createElement("div");
+                buttonbox.setAttribute("class", "popup-logout-button");
+
+                var img = document.createElement("img");
+                img.setAttribute("id", "popup-logout-img");
+                img.setAttribute("src", "{% static "arrow-left.png" %}");
+
+                var buttontext = document.createElement("p");
+                buttontext.setAttribute("id", "popup-logout-text");
+                buttontext.innerHTML = "Sign Out";
+
+                buttonbox.appendChild(img);
+                buttonbox.appendChild(buttontext);
+                mainbox.appendChild(buttonbox);
+
+                var box = document.getElementById("popup-box-div");
+
+                var wrapjob = document.createElement("div");
+                wrapjob.setAttribute("class", "background-popup-wrapper");
+                box.append(wrapjob);
+                box.appendChild(mainbox);
+
+                $(".popup-logout-button").click(function () {
+                    window.location = "/logout/";
+                })
+
+                $('.background-popup-wrapper').click(function () {
+                    document.getElementById("popup-box-div").innerHTML = "";
+                })
+            })
+
+        })
+    </script>
+</head>
+<body>
+
+    <div id="popup-box-div">
+
+    </div>
+    <script>
+        $(document).ready(function () {
+
+            $("#navbar-notif-icon").click(function () {
+                var mainbox = document.createElement("div");
+                mainbox.setAttribute("class", "notification-popup");
+
+                var notificationtitle = document.createElement("p");
+                notificationtitle.setAttribute("id", "notification-title");
+                notificationtitle.innerHTML = "Notifications";
+
+                mainbox.appendChild(notificationtitle);
+
+                x = 1
+                for (var i = 0; i < x; i++) {
+                    var row = document.createElement("div");
+                    row.setAttribute("id", "notification-row");
+
+                    var rowtitle = document.createElement("div");
+                    rowtitle.setAttribute("id", "notification-row-title")
+
+                    var bluedot = document.createElement("div");
+                    bluedot.setAttribute("class", "blue-dot");
+
+                    rowtitle.appendChild(bluedot);
+
+                    var titletext = document.createElement("p");
+                    titletext.setAttribute("id", "notification-row-title-text");
+                    titletext.innerHTML = "New Items Imported";
+
+                    rowtitle.appendChild(titletext);
+                    rowtitle.setAttribute("id", "notification-row-title");
+
+                    row.appendChild(rowtitle);
+
+                    var rowtext = document.createElement("div");
+                    rowtext.setAttribute("id", "notification-row-text");
+
+                    var rowtexttext = document.createElement("p");
+                    rowtexttext.setAttribute("id", "notification-row-text-text");
+
+                    rowtexttext.innerHTML = "107 new items imported from eBay at 3:17 PM.";
+                    rowtext.appendChild(rowtexttext);
+
+                    row.appendChild(rowtext);
+
+                    mainbox.appendChild(row);
+
+                }
+
+                var addto = document.getElementById("popup-box-div");
+                addto.appendChild(mainbox);
+
+                var wrapjob = document.createElement("div");
+                wrapjob.setAttribute("class", "background-popup-wrapper");
+                addto.append(wrapjob);
+
+                $('.background-popup-wrapper').click(function () {
+                    document.getElementById("popup-box-div").innerHTML = "";
+                })
+            })
+
+        })
+    </script>
+
+    <div class="navbar-top">
+        {% load static %}
+        <img id="navbar-logo" src="{% static "itemizedblack.png" %}" alt="Itemized Logo" height="50px">
+
+        <a href="/" class="navbar-home">
+            {% load static %}
+            <img id="navbar-home-icon" src="{% static "home.png" %}" height="30px" />
+            <p id="navbar-home-text">Home</p>
+
+        </a>
+
+        <a href="/inventory/" class="navbar-inventory">
+            {% load static %}
+            <img id="navbar-inventory-icon" src="{% static "package-close.png" %}" height="30px" />
+        </a>
+
+        <a href="/sales/" class="navbar-sales">
+            {% load static %}
+            <img id="navbar-sales-icon" src="{% static "receipt.png" %}" height="30px" />
+        </a>
+
+        <a href="/settings/" class="navbar-settings">
+            {% load static %}
+            <img id="navbar-settings-icon" src="{% static "settings.png" %}" height="30px" />
+        </a>
+
+        <div id="navbar-user-icon"></div>
+
+        <div class="navbar-notif">
+            <img id="navbar-notif-icon" src="{% static "square-chat.png" %}" height="30px" />
+        </div>
+
+        <div id="logout-power-button" class="navbar-power">
+            <img id="navbar-power-icon" src="{% static "power-button.png" %}" height="30px" />
+        </div>
+    </div>
+
+
+
+
+    <div class="welcome-message">
+        <h1>
+            Welcome home, {{name}}
+        </h1>
+        <h2>
+            You've had {{dailysales}} sales in the past 24 hours.
+        </h2>
+
+    </div>
+
+    <div class="sales-summary">
+        <div class="sale-chart">
+            <div id="sales-summary-title">
+                <h3>Sales this Week</h3>
+            </div>
+            <div class="button-wrapper">
+                <button id="day" class="timescale active-button">1D</button>
+                <button id="week" class="timescale inactive-button">1W</button>
+                <button id="month" class="timescale inactive-button">1M</button>
+                <button id="year" class="timescale inactive-button">1Y</button>
+            </div>
+            <canvas id="chart"></canvas>
+            <div class="sales-figures">
+                <p id="sales-figures-top">$1,500.76 USD</p>
+                <p id="sales-figures-bottom">Total Sales this Week</p>
+            </div>
+        </div>
+
+        <div class="recent-additions">
+            <div id="sales-summary-title">
+                <h3>Recent Inventory Additions</h3>
+            </div>
+            <div class="button-wrapper">
+                <button id="addall" class="add-inv-b active-button">All</button>
+                <button id="addunsold" class="add-inv-b inactive-button">Unsold</button>
+                <button id="addsold" class="add-inv-b inactive-button">Sold</button>
+            </div>
+
+
+            <script>
+                $(document).ready(function (){
+                    $.ajax({
+                        url: "/recentinventory",
+                        data:{
+                            'type': 'all'
+                        },
+                        success: function(result){
+                            $('.recent-inventory-space').html(result);
+                            $("#addall").click(function(){
+                                $.ajax({
+                                    url: "/recentinventory",
+                                    data:{
+                                        'type': 'all'
+                                    },
+                                    success: function(result){
+                                        $('.recent-inventory-space').html(result);
+                                    }
+                                 })
+                            })
+                            $("#addunsold").click(function(){
+                                $.ajax({
+                                    url: "/recentinventory",
+                                    data:{
+                                        'type': 'unsold'
+                                    },
+                                    success: function(result){
+                                        $('.recent-inventory-space').html(result);
+                                    }
+                                 })
+                            })
+                            $("#addsold").click(function(){
+                                $.ajax({
+                                    url: "/recentinventory",
+                                    data:{
+                                        'type': 'sold'
+                                    },
+                                    success: function(result){
+                                        $('.recent-inventory-space').html(result);
+                                    }
+                                 })
+                            })
+                        }
+                    });
+                });
+            </script>
+
+
+            <div class="recent-inventory-space">
+                <table id="recent-additions-table">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Retail Price</th>
+                            <th>Resale Price</th>
+                            <th>Projected Profit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>adidas Yeezy 700 V3 Arzareth (US 9.5)</th>
+                            <th>$200</th>
+                            <th>$370</th>
+                            <th class="profit-text">$170</th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+
+        </div>
+
+        <div class="new-inventory">
+            <div id="sales-summary-title">
+                <h3>New Inventory this Week</h3>
+            </div>
+            <img id="new-inventory-icon" src="{% static "barcode-scan.png" %}" />
+            <div class="new-inventory-count">
+                <p>{10}</p>
+                <button id="newinvall" class="invcount active-button">All</button>
+                <button id="newinvtype1" class="invcount inactive-button">Type 1</button>
+                <button id="newinvtype2" class="invcount inactive-button">Type 2</button>
+                <button id="newinvtype3" class="invcount inactive-button">Type 3</button>
+            </div>
+        </div>
+
+        <div class="quick-actions">
+            <div id="sales-summary-title">
+                <h3>Quick Actions</h3>
+            </div>
+            <div class="quick-action-row">
+                <img id="quick-action-icon" src="{% static "file-add.png" %}" height="50" alt="Add Listing" />
+                <div class="quick-action-addlisting">
+                    <h6>Add Listing</h6>
+                    <img id="quick-action-arrow" src="{% static "arrow-right.png" %}" height="20" alt="Add Listing" />
+                </div>
+            </div>
+            <div class="quick-action-row">
+                <img id="quick-action-icon1" src="{% static "barcode.png" %}" width="50" alt="Add Listing" />
+                <div class="quick-action" id="addinventory">
+                    <h6>Add Inventory</h6>
+                    <img id="quick-action-arrow" src="{% static "arrow-right.png" %}" height="20" alt="Add Listing" />
+                </div>
+            </div>
+            <div class="quick-action-row">
+                <img id="quick-action-icon" src="{% static "cashier.png" %}" height="50" alt="Add Listing" />
+                <div class="quick-action" id="">
+                    <h6>Add Product Sale</h6>
+                    <img id="quick-action-arrow" src="{% static "arrow-right.png" %}" height="20" alt="Add Listing" />
+                </div>
+            </div>
+        </div>
+
+        <div class="listing-statistics">
+            <div id="sales-summary-title">
+                <h3>Listing Statistics</h3>
+            </div>
+            <div class="listing-statistics-box">
+                <div class="listing-statistics-row">
+                    <h4>
+                        {{avglistingtime}} Days
+                    </h4>
+                    <h5>
+                        Avg. Time for Listings to Sell on all Markets
+                    </h5>
+                </div>
+
+                <div class="listing-statistics-row">
+                    <h4>
+                        {{totallivelistings}}
+                    </h4>
+                    <h5>
+                        Total Live Listings on all Markets
+                    </h5>
+                </div>
+
+                <div class="listing-statistics-row">
+                    <h4>
+                        {{totalsoldlistings}}
+                    </h4>
+                    <h5>
+                        Total Sold Listings on all Markets
+                    </h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="recent-profit">
+            <div id="sales-summary-title">
+                <h3>Total Profit this Week</h3>
+            </div>
+            <img id="new-inventory-icon" src="{% static "finance-chart.png" %}" />
+            <div class="new-inventory-count">
+                <p>{$1,545}</p>
+                <button id="profitall" class="profit active-button">All</button>
+                <button id="profittype1" class="profit inactive-button">Type 1</button>
+                <button id="profittype2" class="profit inactive-button">Type 2</button>
+                <button id="profittype3" class="profit inactive-button">Type 3</button>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

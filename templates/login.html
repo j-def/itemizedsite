@@ -1,0 +1,291 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300&display=swap');
+        body{
+            margin:0;
+        }
+        .loginForm {
+            float: left;
+            margin-top: 5%;
+            margin-left: 10vw;
+            width: 50%;
+        }
+
+        #loginSubmit {
+            background-color: #1625C7;
+            color: white;
+            width: 100%;
+            border-radius: 10px;
+            border: solid 2px #1625C7;
+            height: 50px;
+        }
+
+        .signinbox {
+            width: 100%;
+            margin-top: 10%;
+            text-align: left;
+            margin-left: 10vw;
+            float: left;
+        }
+
+        h1 {
+            margin-top: 5%;
+            font-size: 36px;
+            font-family: 'Kumbh Sans', sans-serif;
+            color: #1625C7;
+        }
+
+        h2 {
+            margin-top: 5%;
+            font-size: 18px;
+            opacity: 0.5;
+            font-family: 'Kumbh Sans', sans-serif;
+            width: 70%;
+        }
+
+        .usable {
+            margin-left: 0px;
+            width: 45vw;
+            float: left;
+        }
+
+        p {
+            font-family: 'Kumbh Sans', sans-serif;
+            font-size: 15px;
+        }
+
+        .inputlog1 {
+            {% load static %}
+            background-image: url({% static "mail.png" %});
+            background-repeat: no-repeat;
+            background-position: 5% 50%;
+            background-size: 5%;
+            padding-left: 10%;
+            margin-top: 5%;
+            width: 77%;
+            height: 50px;
+            border-radius: 10px;
+            border: solid 2px #D2D2D2;
+            padding-left: 100px;
+            text-align: left;
+        }
+        .inputlog2 {
+
+        {% load static %}
+
+        background-image: url({% static "key.png" %});
+        background-repeat: no-repeat;
+        background-position: 5% 50%;
+        background-size: 5%;
+        padding-left: 10%;
+        margin-top: 5%;
+        width: 77%;
+        height: 50px;
+        border-radius: 10px;
+        border: solid 2px #D2D2D2;
+        padding-left: 100px;
+        text-align: left;
+        }
+        .helper {
+            width: 100%;
+            float: left;
+            margin-left: 10vw;
+            margin-top: 2.5%;
+        }
+        .link {
+            margin-top: 2.5%;
+            width: fit-content;
+            display: inline-block;
+        }
+        #steppic{
+            margin-top: 7.5px;
+        }
+    </style>
+    <style>
+            .unusable{
+                width: 50vw;
+                height: 100vh;
+                Position:relative;
+                background-color: #4954D0;
+                float: right;
+                top:0;
+                overflow:hidden;
+
+            }
+            #box1{
+                clip-path: polygon(0 0, 100% 31%, 93% 100%, 0% 100%);
+                height: 300px;
+                width: 200px;
+                background-color: #6672F3;
+                margin-bottom: 0%;
+                position: absolute;
+                bottom: 0;
+
+            }
+            #box2{
+                clip-path: polygon(0 0, 100% 31%, 93% 100%, 0% 100%);
+                height: 470px;
+                width: 350px;
+                background-color: #4C5AEF;
+                margin-bottom: 0%;
+                position: absolute;
+                bottom: 0;
+            }
+            #box3{
+                clip-path: polygon(0 0, 96% 18%, 93% 100%, 0% 100%);               
+                 height: 600px;
+                width: 500px;
+                background-color: #1625C7;
+                margin-bottom: 0%;
+                position: absolute;
+                bottom: 0;
+            }
+            #box4{
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+                height: 320px;
+                width: 100%;
+                background-color: #2B359C;
+                margin-bottom: 0%;
+                position: absolute;
+                bottom: 0;
+            }
+            #box5{
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+                height: 150px;
+                width: 300px;
+                background-color:#4652D7;
+                margin-bottom: 0%;
+                position: absolute;
+                bottom: 0;
+                right:0;
+            }
+            #box6{
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+                height: 150px;
+                width: 150px;
+                background-color:#4C56CA;
+                margin-bottom: 0%;
+                position: absolute;
+                bottom: 50px;
+                right:0;
+            }
+            #box7{
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+                height: 150px;
+                width: 150px;
+                background-color:#515DDE;
+                margin-bottom: 0%;
+                position: absolute;
+                bottom: 200px;
+                right:0;
+            }
+            #box8{
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+                height: 150px;
+                width: 150px;
+                background-color:#3A45C3;
+                margin-bottom: 0%;
+                position: absolute;
+                bottom: 300px;
+                right:0;
+            }
+            #box9{
+                clip-path: polygon(77% 11%, 100% 0, 100% 100%, 0 100%, 0 89%);
+                height: 200px;
+                width: 150px;
+                background-color:#7F86D2;
+                margin-bottom: 0%;
+                position: absolute;
+                bottom: 450px;
+                right:0;
+            }
+            
+            #box10{
+                height: 200px;
+                width: 100%;
+                background-color:#333FB9;
+                margin-bottom: 0%;
+                position: absolute;
+                top: 0;
+            }
+
+
+        </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("button").click(function () {
+                var username = document.getElementById("username").value;
+                var password = document.getElementById("password").value;
+                $.ajax({
+                    url: "/logincheck", data: { 'username': username, 'password': password }, success: function (result) {
+                        if (result == "False") {
+                            alert("Sorry, your username or password was incorrect.");
+                        } else {
+                            window.location.replace("/");
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+
+</head>
+<body>
+    <div class="unusable">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#333fb9" fill-opacity="1" d="M0,288L40,245.3C80,203,160,117,240,106.7C320,96,400,160,480,186.7C560,213,640,203,720,186.7C800,171,880,149,960,144C1040,139,1120,149,1200,170.7C1280,192,1360,224,1400,240L1440,256L1440,0L1400,0C1360,0,1280,0,1200,0C1120,0,1040,0,960,0C880,0,800,0,720,0C640,0,560,0,480,0C400,0,320,0,240,0C160,0,80,0,40,0L0,0Z"></path></svg>
+        <div id="box4"></div>
+        <div id="box5"></div>
+        <div id="box6"></div>
+        <div id="box8"></div>
+        <div id="box7"></div>
+        <div id="box9"></div>
+
+
+
+        <div id="box3"></div>
+        <div id="box2"></div>
+        <div id="box1"></div>
+
+    </div>
+
+
+    <div class="usable">
+        <div class="signinbox">
+            {% load static %}
+            <img src="{% static "itemizedblack.png" %}" alt="Itemized Logo" width="62.5" height="70.6"/>
+            <h1>Sign In</h1>
+            <h2>Welcome to Itemized, your next favorite reselling assistant.</h2>
+
+        </div>
+        <div class="loginForm">
+
+                <input type="text" class="inputlog1" id="username" name="username" placeholder="Email"><br>
+
+            <input type="password" class="inputlog2" id="password" name="password" placeholder="Password"><br><br>
+            <button id="loginSubmit">Sign In</button>
+        </div>
+
+        <div class="helper">
+            <a class="link" href="/signup">
+                {% load static %}
+                <img id="steppic" src="{% static "arrow.png" %}" height="25" />
+                <p style="float:right;margin-left:25px;">Don't have an account? Make one now.</p>
+            </a>
+            <br />
+            <a class="link" href="/">
+                {% load static %}
+                <img id="steppic" src="{% static "edit.png" %}"  height="25" />
+                <p style="float:right;margin-left:25px;">Reset Password</p>
+            </a>
+        </div>
+
+    </div>
+</body>
+</html>

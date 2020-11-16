@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <title>Title</title>
+      <style>
+         body{
+         text-align:center;
+         }
+         #output{
+         margin-left: 15px;
+         margin-right: 15px;
+         width: 64px;;
+         height: 64px;
+         border: solid;
+         border-width: 2px;
+         border-color:black;
+         }
+      </style>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+      <script>
+         var loadFile = function(event) {
+             if (event.target.files.length > 6){
+                 alert("You can only upload a maximum of 6 images");
+                 $('#images').val('');
+             }
+         	var i;
+         	document.getElementById("imageView").innerHTML = "";
+         	for (i = 0; i < event.target.files.length; i++){
+         	    var image = document.createElement("IMG");
+         	    image.id = "output"
+         	    image.src = URL.createObjectURL(event.target.files[i]);
+                 document.getElementById("imageView").appendChild(image);
+         	}
+
+         };
+      </script>
+      <script>
+         $(document).ready(function(){
+         $("#customTitleCheckbox").change(function(){
+                 if($(this).is(':checked')){
+                    $('#customTitle').attr('disabled', false);
+                } else {
+                     $('#customTitle').val('');
+                    $('#customTitle').attr('disabled', true);
+                }
+           });
+             $("#customDescCheckbox").change(function(){
+                 if($(this).is(':checked')){
+                    $('#customDesc').attr('disabled', false);
+                } else {
+                     $('#customDesc').val('');
+                    $('#customDesc').attr('disabled', true);
+                }
+           });
+             $("#listingPrice").change(function(){
+             if (this.value < 0){
+                 var newprice = this.value * -1;
+                }
+                else{
+                 var newprice = this.value;
+                }
+                this.value = parseFloat(newprice).toFixed(2);
+           });
+           $("#purchasePrice").change(function(){
+                if (this.value < 0){
+                 var newprice = this.value * -1;
+                }
+                else{
+                 var newprice = this.value;
+                }
+                this.value = parseFloat(newprice).toFixed(2);
+           });
+         });
+
+      </script>
+   </head>
+   <body>
+      <h1>Add to Inventory</h1>
+      <form id="productForm" action="submit/" method="post" enctype="multipart/form-data">
+         {% csrf_token %}
+         <label for="name">Product Name:</label><br>
+         <input type="text" id="name" name="name">
+         <br>
+         <br>
+         <label for="name">Product URL:</label><br>
+         <input type="text" id="url" name="url">
+         <br>
+         <br>
+         <label for="customTitle">Custom Title:</label>
+         <input id="customTitleCheckbox" name="customTitleCheckbox" type="checkbox" checked>
+         <br>
+         <input type="text" id="customTitle" name="customTitle">
+         <br>
+         <br>
+         <label for="customDesc">Custom Description:</label>
+         <input id="customDescCheckbox" name="customDescCheckbox" type="checkbox" checked>
+         <br>
+         <textarea id="customDesc" name="customDesc" rows="7" cols="40"></textarea>
+         <br>
+         <br>
+         <input type="file" id="images" name="images" onchange="loadFile(event)" accept="image/png, image/jpeg" multiple>
+         <div id="imageView">
+         </div>
+         <br>
+         <br>
+         <label for="shippingCost">Shipping Cost:</label>
+         <select name="shippingCost" id="shippingCost">
+            <option value="notFree">Seller Pays</option>
+            <option value="free">Buyer Pays</option>
+         </select>
+         <br>
+         <br>
+         <label for="listingPrice">Listing Price:</label><br>
+         <input type="number" id="listingPrice" name="listingPrice">
+         <br>
+         <br>
+         <label for="purchasePrice">Purchase Price:</label><br>
+         <input type="number" id="purchasePrice" name="purchasePrice">
+         <br>
+         <br>
+         <button id="loginSubmit">Submit</button>
+      </form>
+   </body>
+</html>
